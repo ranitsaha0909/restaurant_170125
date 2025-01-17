@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<h1>
+    Place New Order
+</h1>
+<form action="{% url 'new_order' %}" method="post">
+    {% csrf_token %}
+    <label for="full_name">Full Name</label>
+    <input type="text" name="full_name" id="full_name"><br>
+    <label for="phone_number">Phone Number</label>
+    <input type="text" name="phone_number" id="phone_number"><br>
+    <h3>
+        Products
+    </h3>
+    {% for product in products %}
+    <input type="checkbox" name="product_{{product.id}}" id="{{product.id}}">
+    <label for="{{product.id}}">{{product}}</label>
+    <input type="number" name="product_{{product.id}}_quantity"><br>
+    {% endfor %}
+
+    <br>
+    <input type="submit" value="Submit">
+
+</form>
+</body>
+</html>
